@@ -1,0 +1,54 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+  <section class="header">
+    <h2 class="title">Prime User Prediction!</h2>
+  </section>
+  <hr />
+
+  <div class="content">
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <div class="row">
+        <div class="three columns">
+          {{ form.avg_reordered_items.label }} {{ form.avg_reordered_items() }}
+        </div>
+        <div class="three columns">
+          {{ form.avg_days_since_prior.label }} {{ form.avg_days_since_prior() }}
+        </div>
+        <div class="three columns">
+          {{ form.hour_of_the_day.label }} {{ form.hour_of_the_day() }}
+        </div>
+        <div class="three columns">
+          {{ form.day_of_the_week.label }} {{ form.day_of_the_week() }}
+        </div>
+      </div>
+      <div class="row">
+        <button type="submit" class="button-primary">Submit</button>
+      </div>
+    </form>
+    {% if prediction %}
+      <div class="row">
+        <div class="six columns">
+          <h2>User is {{ prediction }}</h2>
+        </div>
+        <div class="six columns">
+         <!--  Your Chart or any other form of visualizations -->
+         <div id="viz"></div>
+         <div id="chart"></div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock body %}
+
+{% block js %}
+  <script type="text/javascript" src="//d3plus.org/js/d3.js">
+  <!-- load D3plus after D3js -->
+  
+  <script src="//d3plus.org/js/d3plus.js"></script>
+  
+   
+  </script>
+{% endblock js %}
